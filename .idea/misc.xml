@@ -8,9 +8,11 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/drawable/ic_wave__1_.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/drawable/round_shap.xml" value="0.1" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/layout/activity_main.xml" value="0.15432098765432098" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/layout/activity_main.xml" value="0.20242914979757085" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/layout/activity_signin.xml" value="0.17301038062283736" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/layout/activity_user_log.xml" value="0.1796875" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/SignUpandSignIn/app/src/main/res/layout/item_row.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -9,8 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SignUpAndSignIn">
-        <activity android:name=".UserLog"></activity>
-        <activity android:name=".UserSignIn" />
+        <activity
+            android:name=".LoginUsers"
+            android:exported="false" />
+        <activity
+            android:name=".UserDetails"
+            android:exported="false" />
+        <activity
+            android:name=".SignUser"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

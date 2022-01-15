@@ -2,54 +2,48 @@ package com.example.signupandsignin
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DatabaseHelper(context: Context): SQLiteOpenHelper(context,"user.db",null,1) {
-
+class DatabaseHelper(context: Context): SQLiteOpenHelper(context,"user.db",null,2) {
     private val sqLiteDatabase: SQLiteDatabase = writableDatabase
-
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("create table Users(Name Text, Email Text, Password Text)")
-    }
-
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        TODO("Not yet implemented")
-    }
-
-
-    fun signIN(name: String, email: String, password: String) {
-        val contentValues = ContentValues()
-        contentValues.put("Name", name)
-        contentValues.put("Email", email)
-        contentValues.put("Password", password)
-
-        sqLiteDatabase.insert("Users", null, contentValues)
-    }
-
-
-    fun logIn(email: String, password: String) {
-        val email = sqLiteDatabase.rawQuery("SELECT * FROM Users WERE Email = $email ", null)
-
-        val res = sqLiteDatabase.rawQuery(
-            "SELECT * FROM Users WHERE Email = '$email' AND Password = '$password'",
-            null
-        )
-        if (res.count < 1) {
-            println("The Password Enter Wrong , Sorry!")
-        } else {
-            println("Something Wrong")
+        if (db != null){
+            db?.execSQL("create table users( Email STRING PRIMARY KEY ,Name text,Mobile text,Password text)")
         }
-
-
     }
 
-    fun getDetails(email: String): List<String> {
-        val c = sqLiteDatabase.rawQuery("SELECT * FROM Users WHERE Email = '$email'", null)
-        if (c.moveToFirst())
-            return listOf(c.getString(0).toString(), c.getString(1).toString())
-        return listOf(":(", ":(")
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        db!!.execSQL("DROP TABLE IF EXISTS users")
+        onCreate(db)
+    }
+
+    fun saveData(user: Users) {
+        val contentValues = ContentValues()
+        contentValues.put("Email",user.email)
+        contentValues.put("Name",user.name)
+        contentValues.put("Mobile",user.mobile)
+        contentValues.put("Password",user.password)
+        sqLiteDatabase.insert("users",null,contentValues)
     }
 
 
+    fun readData(email: String): Users? {
+        var user: Users? = null
+        val cursor: Cursor =
+            sqLiteDatabase.rawQuery("SELECT * FROM users WHERE Email LIKE '$email' ", null)
+        if (cursor.count < 1) {
+            println("No Data Found")
+        } else {
+            cursor.moveToNext()
+            user = Users(
+                cursor.getString(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                (cursor.getString(3))
+            )
+        }
+        return user
+    }
 }
